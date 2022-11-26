@@ -1,0 +1,23 @@
+@mixin buttonTheme($bgcolor: DarkGray,$color: white,$bradius:5%) {
+    background: $bgcolor;
+    border-radius: $bradius;
+    border: none;
+    color: $color;
+    padding: 10px 18px;
+  }
+
+  .info {
+    @include buttonTheme($bradius:2%);
+  }
+
+  .alert {
+    @include buttonTheme($bgcolor: red,$color: white,$bradius:2%);
+  }
+
+  .success {
+    @include buttonTheme($bgcolor: green,$color: white,$bradius:2%);
+  }
+  
+  
+
+  
