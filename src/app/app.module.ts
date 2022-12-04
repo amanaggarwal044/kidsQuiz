@@ -12,6 +12,7 @@ import { HeroComponent } from './components/hero/hero.component';
 import { ParseYamlComponent } from './components/parse-yaml/parse-yaml.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AboutComponent } from './pages/about/about.component';
     HeroComponent,
     HomeComponent,
     AboutComponent,
-    ParseYamlComponent
+    ParseYamlComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
