@@ -1,0 +1,32 @@
+@mixin from($device) {
+  $min-width-bp: (map-get($bps, $device) or $device);
+
+  @media only screen and (min-width: $min-width-bp) {
+    @content;
+  }
+}
+
+@mixin upto($device) {
+  $max-width-bp: (map-get($bps, $device) or $device);
+
+  @media only screen and (max-width: $max-width-bp) {
+    @content;
+  }
+}
+
+@mixin between($device1, $device2) {
+  $min-width-bp: (map-get($bps, $device1) or $device1);
+  $max-width-bp: (map-get($bps, $device2) or $device2);
+
+  @media only screen and (min-width: $min-width-bp) and (max-width: $max-width-bp) {
+    @content;
+  }
+}
+
+@mixin orientation($device, $orientationType) {
+  $max-width-bp: (map-get($bps, $device) or $device);
+
+  @media only screen and (max-width: $max-width-bp) and ($orientation: $orientationType) {
+    @content;
+  }
+}

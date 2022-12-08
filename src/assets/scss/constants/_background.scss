@@ -1,0 +1,9 @@
+$background-colors:(
+    primary:$primary-color
+);
+
+@each $colorName, $color in colors {
+    .background-#{$colorName} {
+        background-color: $color;
+    }
+}

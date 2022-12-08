@@ -1,9 +1,12 @@
 <div>
-  <ul class="heading-1">
+  <ul class="heading-1 abc">
     <li>Home</li>
     <li>About</li>
     <li>Contact</li>
     <li>Our Products</li>
   </ul>
-  <input type="search">
+  <input type="text" (keyup)='getInput($event)'>
+  <span></span>
 </div>
+<p>{{inputSearch}}</p>
+<router-outlet></router-outlet>

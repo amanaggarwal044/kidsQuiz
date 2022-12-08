@@ -1,6 +1,4 @@
-@use 'color';
-
-@mixin buttonTheme($bgcolor: color.$primary-color,$color: color.$bg-white,$bradius:5%) {
+@mixin buttonTheme($bgcolor: $primary-color,$color: $bg-white,$bradius:5%) {
     background: $bgcolor;
     border-radius: $bradius;
     border: none;

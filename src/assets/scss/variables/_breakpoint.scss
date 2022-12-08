@@ -1,0 +1,19 @@
+$bp-mobile: 320px;
+$bp-tablet: 600px;
+$bp-desktop: 1024px;
+$bp-desktop-l: 1280px;
+$bp-desktop-xl: 1440px;
+$bp-desktop-xxl: 1680px;
+$bp-2k: 2048px;
+$bp-3k: 3096px;
+
+$bps: (
+  'mobile':$bp-mobile,  
+  'tablet':$bp-tablet,  
+  'desktop':$bp-desktop,  
+  'desktop-l':$bp-desktop-l,  
+  'desktop-xl':$bp-desktop-xl,  
+  'desktop-xxl':$bp-desktop-xxl,  
+  'desktop-2k':$bp-2k,  
+  'desktop-3k':$bp-3k  
+);

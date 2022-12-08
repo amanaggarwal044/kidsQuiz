@@ -1,0 +1,6 @@
+@import '../../../styles.scss';
+
+@include from(mobile) {
+    .abc {
+background-color: aqua;    }
+}
