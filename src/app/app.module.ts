@@ -11,8 +11,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { ParseYamlComponent } from './components/parse-yaml/parse-yaml.component';
 import { HomeComponent } from './pages/home/home.component';
-import { AboutComponent } from './pages/about/about.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { CarouselDefaultComponent } from './components/carousel-default/carousel-default.component';
+import { AccordionDefaultComponent } from './components/accordion-default/accordion-default.component';
+import { FaultyComponent } from './components/faulty/faulty.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,16 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     FooterComponent,
     HeroComponent,
     HomeComponent,
-    AboutComponent,
     ParseYamlComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CarouselDefaultComponent,
+    AccordionDefaultComponent,
+    FaultyComponent
+  ],
+  entryComponents: [
+    HeroComponent,
+    CarouselDefaultComponent,
+    AccordionDefaultComponent
   ],
   imports: [
     BrowserModule,

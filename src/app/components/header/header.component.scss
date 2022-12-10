@@ -1,6 +1,14 @@
-@import '../../../styles.scss';
+@import "../../../styles.scss";
 
 @include from(mobile) {
-    .abc {
-background-color: aqua;    }
+  .container {
+    background-color: aqua;
+
+    ul {
+      text-decoration-style: none;
+    }
+  }
+
 }
+
+
