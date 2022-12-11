@@ -19,14 +19,6 @@ export class HomeComponent implements OnInit, AfterContentInit {
   @ViewChild('container', { read: ViewContainerRef, static: true })
   container!: ViewContainerRef;
 
-
-  // alias name of our components which we get from backend
-  componentNames: any = {
-    HeroComponent: 'hero',
-    CarouselDefaultComponent: 'carousel-default',
-    AccordionDefaultComponent: 'accordion-default',
-  };
-
   test: any = [];
 
   constructor() {
@@ -38,7 +30,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
         cta: {url:'/home',customClass:'abc'},
         image: {src:'icon-svg',customClass:'abc'},
         video: {src:'icon-svg',customClass:'abc'},
-        uiConfig: 'PRIMARY'
+        uiConfig: 'teritary'
       } },
       {componentType: 'carousel-default', data: { eyebrow: 'this is carousel' },},
       { componentType: 'abc' },
@@ -68,10 +60,22 @@ export class HomeComponent implements OnInit, AfterContentInit {
     }
   }
 
+  // alias name of our components so that we dont have to give full name of our components
+  componentNames: any = {
+    HeroComponent: 'hero',
+    CarouselDefaultComponent: 'carousel-default',
+    AccordionDefaultComponent: 'accordion-default',
+  };
+
+
+  // to valid the component its present or not in our project and to get a original coponent back from its alias name
   getComponentType(componentType: string): any {
+    //this is by faulty component which tell us the component we get from backend is not correct
     let type: any = FaultyComponent;
+
+    //we have to use lowercase so that case senstivity is removed and we will get our comp whether its HERO or hero
     componentType != undefined ? componentType= componentType.toLocaleLowerCase() : componentType = '';
-    switch (componentType.toLocaleLowerCase()) {
+    switch (componentType) {
       case this.componentNames.HeroComponent: {
         type = HeroComponent;
         break;
@@ -81,7 +85,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
         break;
       }
       case this.componentNames.AccordionDefaultComponent: {
-        type = CarouselDefaultComponent;
+        type = AccordionDefaultComponent;
         break;
       }
     }

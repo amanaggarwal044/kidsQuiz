@@ -1,16 +1,20 @@
 <ng-template [ngIf]="data != undefined" [ngIfElse]="contentNotProvided">
-    <p>abcd</p>
-  <ng-template [ngIf]="data.uiConfig == undefined">
+    <p>abcddd</p>
+  <ng-template [ngIf]="data.uiConfig == undefined || !['primary','secondary','teritary'].includes((data.uiConfig | lowercase)) ">
     <p>This is default config</p>
   </ng-template>
 
 
-  <ng-template [ngIf]="data.uiConfig == 'primary'">
+  <ng-template [ngIf]="(data.uiConfig | lowercase) == 'primary'">
     <p>This is primary config</p>
   </ng-template>
 
-  <ng-template [ngIf]="data.uiConfig == 'secondary'">
+  <ng-template [ngIf]="(data.uiConfig | lowercase) == 'secondary'">
     <p>This is Secondary config</p>
+  </ng-template>
+
+  <ng-template [ngIf]="(data.uiConfig | lowercase) == 'teritary'">
+    <p>This is tertitary config</p>
   </ng-template>
 </ng-template>
 
