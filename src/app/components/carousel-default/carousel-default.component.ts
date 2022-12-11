@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./carousel-default.component.scss']
 })
 export class CarouselDefaultComponent implements OnInit {
-  @Input() data:any;
+  @Input() data:any ={eyebrow:'hoooo'};
 
   constructor() { }
 

@@ -1,0 +1,22 @@
+compId: header123
+nav:
+  - label: Home
+    url: home
+    aria-label: home
+  - label: About
+    url: about
+    aria-label: about
+  - label: Products
+    url: products
+    aria-label: products
+  - label: Our Work
+    url: our-work
+    aria-label: our work
+searchbar: true
+ctas:
+  - label: Log In
+    url: login
+    aria-label: log in
+  - label: Sign Up
+    url: signup
+    aria-label: sign up

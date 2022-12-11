@@ -9,4 +9,8 @@
   <span></span>
 </div>
 <p>{{inputSearch}}</p>
+<ng-template [ngIf]="parsedYamlObject != undefined">
+  <p>{{parsedYamlObject.compId}}</p>
+</ng-template>
+
 <router-outlet></router-outlet>

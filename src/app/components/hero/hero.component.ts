@@ -6,10 +6,13 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./hero.component.scss']
 })
 export class HeroComponent implements OnInit {
-@Input() data:any;
-  constructor() { }
+  @Input() data:any;
+
+  constructor() {
+   }
 
   ngOnInit(): void {
+    console.log(this.data);
   }
 
 }

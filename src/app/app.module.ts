@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeroComponent } from './components/hero/hero.component';
-import { ParseYamlComponent } from './components/parse-yaml/parse-yaml.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { CarouselDefaultComponent } from './components/carousel-default/carousel-default.component';
@@ -23,7 +22,6 @@ import { FaultyComponent } from './components/faulty/faulty.component';
     FooterComponent,
     HeroComponent,
     HomeComponent,
-    ParseYamlComponent,
     PageNotFoundComponent,
     CarouselDefaultComponent,
     AccordionDefaultComponent,
