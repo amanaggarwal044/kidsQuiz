@@ -14,6 +14,8 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { CarouselDefaultComponent } from './components/carousel-default/carousel-default.component';
 import { AccordionDefaultComponent } from './components/accordion-default/accordion-default.component';
 import { FaultyComponent } from './components/faulty/faulty.component';
+import { CheckUIConfigPipe } from './utilities/pipes/check-uiconfig.pipe';
+import { NullSafetyCheckPipe } from './utilities/pipes/null-safety-check.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { FaultyComponent } from './components/faulty/faulty.component';
     PageNotFoundComponent,
     CarouselDefaultComponent,
     AccordionDefaultComponent,
-    FaultyComponent
+    FaultyComponent,
+    CheckUIConfigPipe,
+    NullSafetyCheckPipe
   ],
   entryComponents: [
     HeroComponent,

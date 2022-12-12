@@ -1,10 +1,5 @@
-import {
-  AfterContentInit,
-  Component,
-  OnInit,
-  ViewChild,
-  ViewContainerRef,
-} from '@angular/core';
+import {AfterContentInit,Component,OnInit,ViewChild,ViewContainerRef} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AccordionDefaultComponent } from 'src/app/components/accordion-default/accordion-default.component';
 import { CarouselDefaultComponent } from 'src/app/components/carousel-default/carousel-default.component';
 import { FaultyComponent } from 'src/app/components/faulty/faulty.component';
@@ -16,23 +11,28 @@ import { HeroComponent } from 'src/app/components/hero/hero.component';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, AfterContentInit {
-  @ViewChild('container', { read: ViewContainerRef, static: true })
-  container!: ViewContainerRef;
+  @ViewChild('container', { read: ViewContainerRef, static: true }) container!: ViewContainerRef;
+  
+  path:any;
 
   test: any = [];
 
-  constructor() {
+  constructor(private _activeRoute:ActivatedRoute) {
+    this.path=_activeRoute.snapshot.params;
+    console.log(this.path,"constructor");
     // this.test = [{componentType:'hero',data:{eyebrow:'MAke my trip'}},{componentType:'carousel-default',data:{eyebrow:'this is carousel'}}]
     this.test = [
-      { componentType: 'hero', data: { 
+      {componentType: 'hero', data: { 
+        componentName: 'Hero Default',
         eyebrow: {value:'this is hero eyerbrow',customClass:'abc'},
         heading: {value:'this is hero heading',customClass:'abc'},
         cta: {url:'/home',customClass:'abc'},
         image: {src:'icon-svg',customClass:'abc'},
         video: {src:'icon-svg',customClass:'abc'},
-        uiConfig: 'teritary'
+        uiConfig: 'primary'
       } },
-      {componentType: 'carousel-default', data: { eyebrow: 'this is carousel' },},
+      {componentType: 'carousel-default', data: {componentName: 'Home carousel', eyebrow: 'this is carousel' },},
+      {componentType: 'accordion-default', data: {componentName: 'Home accordion', eyebrow: 'this is carousel' },},
       { componentType: 'abc' },
       { componentType: 'hero' }
     ];
@@ -41,6 +41,8 @@ export class HomeComponent implements OnInit, AfterContentInit {
   ngOnInit(): void {}
 
   ngAfterContentInit(): void {
+    console.log("ab");
+
     this.container.clear(); //it will clear the container and removes previous rendered component
 
     for (let i = 0; i < this.test.length; i++) {
