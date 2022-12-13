@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { HeroComponent } from './components/hero/hero.component';
+import { HeroDefaultComponent } from './components/hero-default/hero-default.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { CarouselDefaultComponent } from './components/carousel-default/carousel-default.component';
@@ -16,23 +16,25 @@ import { AccordionDefaultComponent } from './components/accordion-default/accord
 import { FaultyComponent } from './components/faulty/faulty.component';
 import { CheckUIConfigPipe } from './utilities/pipes/check-uiconfig.pipe';
 import { NullSafetyCheckPipe } from './utilities/pipes/null-safety-check.pipe';
+import { AddBlockClassPipe } from './utilities/pipes/add-block-class.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HeroComponent,
+    HeroDefaultComponent,
     HomeComponent,
     PageNotFoundComponent,
     CarouselDefaultComponent,
     AccordionDefaultComponent,
     FaultyComponent,
     CheckUIConfigPipe,
-    NullSafetyCheckPipe
+    NullSafetyCheckPipe,
+    AddBlockClassPipe
   ],
   entryComponents: [
-    HeroComponent,
+    HeroDefaultComponent,
     CarouselDefaultComponent,
     AccordionDefaultComponent
   ],

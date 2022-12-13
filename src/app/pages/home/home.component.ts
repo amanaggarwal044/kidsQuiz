@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AccordionDefaultComponent } from 'src/app/components/accordion-default/accordion-default.component';
 import { CarouselDefaultComponent } from 'src/app/components/carousel-default/carousel-default.component';
 import { FaultyComponent } from 'src/app/components/faulty/faulty.component';
-import { HeroComponent } from 'src/app/components/hero/hero.component';
+import { HeroDefaultComponent } from 'src/app/components/hero-default/hero-default.component';
 
 @Component({
   selector: 'app-home',
@@ -22,8 +22,8 @@ export class HomeComponent implements OnInit, AfterContentInit {
     console.log(this.path,"constructor");
     // this.test = [{componentType:'hero',data:{eyebrow:'MAke my trip'}},{componentType:'carousel-default',data:{eyebrow:'this is carousel'}}]
     this.test = [
-      {componentType: 'hero', data: { 
-        componentName: 'Hero Default',
+      {componentType: 'hero-default', data: { 
+        componentName: 'home-page-hero',
         eyebrow: {value:'this is hero eyerbrow',customClass:'abc'},
         heading: {value:'this is hero heading',customClass:'abc'},
         cta: {url:'/home',customClass:'abc'},
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
       {componentType: 'carousel-default', data: {componentName: 'Home carousel', eyebrow: 'this is carousel' },},
       {componentType: 'accordion-default', data: {componentName: 'Home accordion', eyebrow: 'this is carousel' },},
       { componentType: 'abc' },
-      { componentType: 'hero' }
+      { componentType: 'hero-default' }
     ];
   }
 
@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
 
   // alias name of our components so that we dont have to give full name of our components
   componentNames: any = {
-    HeroComponent: 'hero',
+    HeroComponent: 'hero-default',
     CarouselDefaultComponent: 'carousel-default',
     AccordionDefaultComponent: 'accordion-default',
   };
@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
     componentType != undefined ? componentType= componentType.toLocaleLowerCase() : componentType = '';
     switch (componentType) {
       case this.componentNames.HeroComponent: {
-        type = HeroComponent;
+        type = HeroDefaultComponent;
         break;
       }
       case this.componentNames.CarouselDefaultComponent: {
