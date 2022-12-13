@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
         componentName: 'home-page-hero',
         eyebrow: {value:'this is hero eyerbrow',customClass:'abc'},
         heading: {value:'this is hero heading',customClass:'abc'},
-        cta: {url:'/home',customClass:'abc'},
+        cta: {label: 'Home', url:'/home',aria_label: 'home', external: false, customClass:'abc', icon: 'icon-svg', iconPrefix: false},
         image: {src:'icon-svg',customClass:'abc'},
         video: {src:'icon-svg',customClass:'abc'},
         uiConfig: 'primary'
