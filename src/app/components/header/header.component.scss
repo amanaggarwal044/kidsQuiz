@@ -2,10 +2,10 @@
 
 
 
-.hero-default {
+.header {
   @include from(mobile) {
     &__container {
-      background-color: aqua;
+      background-color: rgb(118, 163, 14);
   
       ul {
         text-decoration-style: none;

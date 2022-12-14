@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 export class HeaderComponent implements OnInit {
   inputSearch:string= '';
   parsedYamlObject:any;
+  blockClass: string = 'header' 
 
   getInput(event:any) {
     this.inputSearch=event.target.value;
