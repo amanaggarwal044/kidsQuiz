@@ -6,11 +6,13 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./accordion-default.component.scss']
 })
 export class AccordionDefaultComponent implements OnInit {
-  @Input() data:any;
+  @Input() componentData:any;
 
+  data:any;
   constructor() { }
 
   ngOnInit(): void {
+  this.data = this.componentData.data;
   }
 
 }

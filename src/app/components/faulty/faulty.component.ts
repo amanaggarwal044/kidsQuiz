@@ -6,11 +6,14 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./faulty.component.scss']
 })
 export class FaultyComponent implements OnInit {
-  @Input() data:any;
-
+  @Input() componentData:any;
+  
+  data: any;
+  
   constructor() { }
 
   ngOnInit(): void {
+    this.data = this.componentData.data;
   }
 
 }

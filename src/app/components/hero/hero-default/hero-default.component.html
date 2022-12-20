@@ -1,9 +1,9 @@
 <ng-template [ngIf]="data != undefined" [ngIfElse]="contentNotProvided">
     <section [id]="(data.componentName | nullSafetyCheck)">
-      <p>abc</p>
-      <!-- container is element class and blockclass and modifierClass  -->
-      <p>{{'container' | addBlockClass: blockClass : 'secondary'}}</p>
-      <ng-container [ngSwitch]="'primary'">
+      <!-- container is element class and blockclass and modifierClass acc to bem standards -->
+      <!-- return hero-default__container--secondary-->
+      <!-- <p>{{'container' | addBlockClass: blockClass : 'secondary'}}</p> -->
+      <ng-container [ngSwitch]="(data.uiConfig.type | nullSafetyCheck | lowercase)">
         <ng-container *ngSwitchCase="'primary'">
             <p>This is primary config</p>
         </ng-container>
@@ -27,6 +27,6 @@
   
   <!-- if data object is empty then it will redirect to this template. Just for null safety -->
   <ng-template #contentNotProvided>
-    <p>No Content Found</p>
+    <p>{{blockClass}} component is used but no data found</p>
   </ng-template>
   

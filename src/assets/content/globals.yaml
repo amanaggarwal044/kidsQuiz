@@ -1,0 +1,14 @@
+home-page-hero:
+  comp_config:
+    default_values: 'video'
+    content_types: 'all'
+
+home-page-carousel:
+  comp_config:
+    default_values: 'vhiii'
+    content_types: 'asamsmak0'
+
+home-page-accordion:
+  comp_config:
+    default_values: 'ssd'
+    content_types: 'sdsd'

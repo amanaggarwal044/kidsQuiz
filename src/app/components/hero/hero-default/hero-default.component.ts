@@ -6,7 +6,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./hero-default.component.scss']
 })
 export class HeroDefaultComponent implements OnInit {
-  @Input() data:any;
+  @Input() componentData:any;
+
+  data:any;  
+  config:any;  
 
   blockClass: string = 'hero-default' 
 
@@ -14,6 +17,8 @@ export class HeroDefaultComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.data);
+    this.data = this.componentData.data;
+    this.config = this.componentData.config;
+    console.log(this.config);
   }
 }
