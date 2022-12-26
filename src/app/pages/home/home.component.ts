@@ -1,11 +1,14 @@
 import {AfterContentInit,Component,OnInit,ViewChild,ViewContainerRef} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { observable } from 'rxjs';
-import { AccordionDefaultComponent } from 'src/app/components/accordion/accordion-default/accordion-default.component';
-import { CarouselDefaultComponent } from 'src/app/components/carousel/carousel-default/carousel-default.component';
+import { AccordionDefaultComponent } from 'src/app/components/accordions/accordion-default/accordion-default.component';
+import { CarouselDefaultComponent } from 'src/app/components/carousels/carousel-default/carousel-default.component';
 import { FaultyComponent } from 'src/app/components/faulty/faulty.component';
-import { HeroDefaultComponent } from 'src/app/components/hero/hero-default/hero-default.component';
+import { FooterDefaultComponent } from 'src/app/components/footers/footer-default/footer-default.component';
+import { HeaderDefaultComponent } from 'src/app/components/headers/header-default/header-default.component';
+import { HeroDefaultComponent } from 'src/app/components/heros/hero-default/hero-default.component';
 import { ParseYamlService } from 'src/app/utilities/services/parse-yaml.service';
+import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 
 @Component({
   selector: 'app-home',
@@ -14,27 +17,34 @@ import { ParseYamlService } from 'src/app/utilities/services/parse-yaml.service'
 })
 export class HomeComponent implements OnInit, AfterContentInit {
   @ViewChild('container', { read: ViewContainerRef, static: true }) container!: ViewContainerRef;
-
+  
+  routeInfo: any = {};
+  docInfo: any = {};
   path: any;
   allComponentsConfig: any = {};
   componentConfig: any = {};
+  numberOfComponents: number = 0;
 
-  test: any = [];
+  test: any;
 
   constructor(private _activeRoute:ActivatedRoute, private _parseYamlService: ParseYamlService) {
     this.path=_activeRoute.snapshot.params;
+    this.routeInfo=_activeRoute.snapshot;
     console.log(this.path,"constructor");
-    // this.test = [{componentType:'hero',data:{eyebrow:'MAke my trip'}},{componentType:'carousel-default',data:{eyebrow:'this is carousel'}}]
+    console.log(_activeRoute.snapshot,"constructor1");
+
+
+
     // add metadata too
-    this.test ={meta:{title:'HomePage', description: 'fsfdfdfdf', meta_image: 'sgv.jpg'}, components:[
+    this.test ={metaData: {title:'HomePage', description: 'fsfdfdfdf', meta_image: 'sgv.jpg'}, components:[
       {componentType: 'hero-default', data: { 
-            componentName: 'home-page-hero',
+        componentName: 'home-page-hero',
         eyebrow: {value:'this is hero eyerbrow',customClass:'abc'},
         heading: {value:'this is hero heading',customClass:'abc'},
         cta: {label: 'Home', url:'/home',aria_label: 'home', external: false, customClass:'abc', icon: 'icon-svg', iconPrefix: false},
         image: {src:'icon-svg',customClass:'abc'},
         video: {src:'icon-svg',repeat: false, customClass:'abc'},
-        uiConfig: {type: 'primary', is_reverse: false, theme: 'light', is_full_bleed: false }
+        uiConfig: {type: 'primary', is_desktopReverse: false, is_tabletReverse: false, is_mobilrReverse: false, theme: 'light', is_full_bleed: false }
       } },
       {componentType: 'carousel-default', data: {componentName: 'home-page-carousel', eyebrow: 'this is carousel' },},
       {componentType: 'accordion-default', data: {componentName: 'home-page-accordion', eyebrow: 'this is accordion' },},
@@ -68,20 +78,32 @@ export class HomeComponent implements OnInit, AfterContentInit {
   }
 
   renderComponent() {
-    this.container.clear(); //it will clear the container and removes previous rendered component
+    if(this.test !== undefined && this.test.components !== undefined) {
+      this.container.clear(); //it will clear the container and removes previous rendered component
 
-    for (let i = 0; i < this.test.components.length; i++) {
-      let component = this.test.components[i];
-      let componentType = this.getComponentType(component.componentType);
-      if (componentType == FaultyComponent) {
-        this.container.createComponent(componentType).setInput('componentData', {data: 'warning unknown component used'});
-      } else if(componentType !== FaultyComponent && this.test.components[i].data !== undefined) {
-        this.componentConfig = this.allComponentsConfig[component.data.componentName];
-        this.container.createComponent(componentType).setInput('componentData', {data: component.data,config: this.componentConfig});
-      } else if(componentType !== FaultyComponent && this.test.components[i].data == undefined) {
-           this.container.createComponent(componentType).setInput('componentData', {data: undefined, config: {}});
+      this.numberOfComponents = this.test.components.length;
 
+      //adding default header and footer if there is not header and footer
+      this.numberOfComponents > 0  && !this.test.components[0].componentType.toLocaleLowerCase().includes('header-')? this.test.components.unshift({componentType: 'header-default'}) : '';
+      this.numberOfComponents > 0  && !this.test.components[this.numberOfComponents - 1].componentType.toLocaleLowerCase().includes('footer-')? this.test.components.push({componentType: 'footer-default'}) : '';
+
+      //revaluating length if there is addition of header or footer
+      this.numberOfComponents = this.test.components.length;
+
+      for (let i = 0; i < this.numberOfComponents; i++) {
+        let component = this.test.components[i];
+        let componentType = this.getComponentType(component.componentType);
+        if (componentType == FaultyComponent) {
+          this.container.createComponent(componentType).setInput('componentData', {data: 'warning unknown component used'});
+        } else if(componentType !== FaultyComponent && this.test.components[i].data !== undefined) {
+          this.componentConfig = this.allComponentsConfig[component.data.componentName];
+          this.container.createComponent(componentType).setInput('componentData', {data: component.data,config: this.componentConfig});
+        } else if(componentType !== FaultyComponent && this.test.components[i].data == undefined) {
+          this.container.createComponent(componentType).setInput('componentData', {data: undefined, config: {}});
+        }
       }
+    } else {
+      this.container.createComponent(PageNotFoundComponent).setInput('componentData', {data: '404 Page not found. Server error'});
     }
   }
 
@@ -90,6 +112,8 @@ export class HomeComponent implements OnInit, AfterContentInit {
     HeroComponent: 'hero-default',
     CarouselDefaultComponent: 'carousel-default',
     AccordionDefaultComponent: 'accordion-default',
+    HeaderDefaultComponent: 'header-default',
+    FooterDefaultComponent: 'footer-default'
   };
 
   // to valid the component its present or not in our project and to get a original coponent back from its alias name
@@ -100,6 +124,10 @@ export class HomeComponent implements OnInit, AfterContentInit {
     //we have to use lowercase so that case senstivity is removed and we will get our comp whether its HERO or hero
     componentType != undefined ? componentType= componentType.toLocaleLowerCase() : componentType = '';
     switch (componentType) {
+      case this.componentNames.HeaderDefaultComponent: {
+        type = HeaderDefaultComponent;
+        break;
+      }
       case this.componentNames.HeroComponent: {
         type = HeroDefaultComponent;
         break;
@@ -110,6 +138,10 @@ export class HomeComponent implements OnInit, AfterContentInit {
       }
       case this.componentNames.AccordionDefaultComponent: {
         type = AccordionDefaultComponent;
+        break;
+      }
+      case this.componentNames.FooterDefaultComponent: {
+        type = FooterDefaultComponent;
         break;
       }
     }

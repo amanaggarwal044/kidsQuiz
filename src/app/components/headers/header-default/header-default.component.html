@@ -1,0 +1,14 @@
+<div [class]="'container' | addBlockClass : blockClass">
+    <ul class="heading-4">
+      <li>Home</li>
+      <li>About</li>
+      <li>Contact</li>
+      <li>Our Products</li>
+    </ul>
+    <input type="text" (keyup)='getInput($event)'>
+    <span></span>
+  </div>
+  <p>{{inputSearch}}</p>
+  <ng-template [ngIf]="data !== undefined">
+    <p>{{data.compId}}</p>
+  </ng-template>
