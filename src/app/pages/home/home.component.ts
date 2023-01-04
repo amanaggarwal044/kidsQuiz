@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit, AfterContentInit {
   path: any;
   allComponentsConfig: any = {};
   componentConfig: any = {};
-  numberOfComponents: number = 0;
 
   test: any;
 
@@ -36,22 +35,26 @@ export class HomeComponent implements OnInit, AfterContentInit {
 
 
     // add metadata too
-    this.test ={metaData: {title:'HomePage', description: 'fsfdfdfdf', meta_image: 'sgv.jpg'}, components:[
-      {componentType: 'hero-default', data: { 
-        componentName: 'home-page-hero',
-        eyebrow: {value:'this is hero eyerbrow',customClass:'abc'},
-        heading: {value:'this is hero heading',customClass:'abc'},
-        cta: {label: 'Home', url:'/home',aria_label: 'home', external: false, customClass:'abc', icon: 'icon-svg', iconPrefix: false},
-        image: {src:'icon-svg',customClass:'abc'},
-        video: {src:'icon-svg',repeat: false, customClass:'abc'},
-        uiConfig: {type: 'primary', is_desktopReverse: false, is_tabletReverse: false, is_mobilrReverse: false, theme: 'light', is_full_bleed: false }
-      } },
-      {componentType: 'carousel-default', data: {componentName: 'home-page-carousel', eyebrow: 'this is carousel' },},
-      {componentType: 'accordion-default', data: {componentName: 'home-page-accordion', eyebrow: 'this is accordion' },},
-      { componentType: 'abc'},
-      { componentType: 'hero-default' },
-      {}
-    ]};
+    this.test ={metaData: {title:'HomePage', description: 'fsfdfdfdf', meta_image: 'sgv.jpg'}, 
+      headerDefault: true, 
+      footerDefault: true, 
+      components:[
+        {componentType: 'hero-default', data: { 
+          componentName: 'home-page-hero',
+          eyebrow: {value:'this is hero eyerbrow',customClass:'abc'},
+          heading: {value:'this is hero heading',customClass:'abc'},
+          cta: {label: 'Home', url:'/home',aria_label: 'home', external: false, customClass:'abc', icon: 'icon-svg', iconPrefix: false},
+          image: {src:'icon-svg',customClass:'abc'},
+          video: {src:'icon-svg',repeat: false, customClass:'abc'},
+          uiConfig: {type: 'primary', is_desktopReverse: false, is_tabletReverse: false, is_mobilrReverse: false, theme: 'light', is_full_bleed: false }
+        } },
+        {componentType: 'carousel-default', data: {componentName: 'home-page-carousel', eyebrow: 'this is carousel' },},
+        {componentType: 'accordion-default', data: {componentName: 'home-page-accordion', eyebrow: 'this is accordion' },},
+        { componentType: 'abc'},
+        { componentType: 'hero-default' },
+        {}
+      ]
+    }
   }
 
   ngOnInit(): void {}
@@ -81,16 +84,11 @@ export class HomeComponent implements OnInit, AfterContentInit {
     if(this.test !== undefined && this.test.components !== undefined) {
       this.container.clear(); //it will clear the container and removes previous rendered component
 
-      this.numberOfComponents = this.test.components.length;
-
       //adding default header and footer if there is not header and footer
-      this.numberOfComponents > 0  && !this.test.components[0].componentType.toLocaleLowerCase().includes('header-')? this.test.components.unshift({componentType: 'header-default'}) : '';
-      this.numberOfComponents > 0  && !this.test.components[this.numberOfComponents - 1].componentType.toLocaleLowerCase().includes('footer-')? this.test.components.push({componentType: 'footer-default'}) : '';
+      this.test.headerDefault ? this.test.components.unshift({componentType: 'header-default'}) : '';
+      this.test.footerDefault ? this.test.components.push({componentType: 'footer-default'}) : '';
 
-      //revaluating length if there is addition of header or footer
-      this.numberOfComponents = this.test.components.length;
-
-      for (let i = 0; i < this.numberOfComponents; i++) {
+      for (let i = 0; i < this.test.components.length; i++) {
         let component = this.test.components[i];
         let componentType = this.getComponentType(component.componentType);
         if (componentType == FaultyComponent) {
@@ -109,7 +107,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
 
   // alias name of our components so that we dont have to give full name of our components
   componentNames: any = {
-    HeroComponent: 'hero-default',
+    HeroDefaultComponent: 'hero-default',
     CarouselDefaultComponent: 'carousel-default',
     AccordionDefaultComponent: 'accordion-default',
     HeaderDefaultComponent: 'header-default',
@@ -128,7 +126,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
         type = HeaderDefaultComponent;
         break;
       }
-      case this.componentNames.HeroComponent: {
+      case this.componentNames.HeroDefaultComponent: {
         type = HeroDefaultComponent;
         break;
       }
