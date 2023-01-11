@@ -6,6 +6,7 @@
     <ng-container [ngSwitch]="(data.uiConfig.type | nullSafetyCheck | lowercase)">
       <ng-container *ngSwitchCase="'primary'">
           <p>This is primary config</p>
+          <p>{{data.eyebrow.value}}</p>
       </ng-container>
 
       <ng-container *ngSwitchCase="'secondary'">
